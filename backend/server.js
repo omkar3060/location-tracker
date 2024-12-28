@@ -10,24 +10,7 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(express.json());
-
-// Update CORS configuration
-const allowedOrigins = [
-  'http://localhost:3000', // Local development
-  'https://location-tracker-frontend-b094.onrender.com', // Deployed frontend
-];
-
-app.use(cors({
-  origin: (origin, callback) => {
-    // Allow requests with no origin (e.g., mobile apps or curl requests)
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-}));
-
+app.use(cors());
 // MongoDB Connection
 const startServer = async () => {
   try {
